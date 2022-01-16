@@ -1,13 +1,12 @@
-<html manifest="SALT.manifest" >
-
+<html manifest="nano.manifest" >
 <head>
     <title>Auto GoldHEN Host</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
             background-image: url("host.jpg");
-      height: 80%;
-      background-position: center;
+            height: 80%;
+            background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -56,6 +55,13 @@
             color: #2F3335;
         }
     </style>
+<script>
+			window.applicationCache.ondownloading=function(){document.getElementById("progress").innerHTML="Page Caching Started!!";};
+			window.applicationCache.onprogress=function(a){document.getElementById("progress").innerHTML=(Math.round(100*(a.loaded/a.total)))+"%";};
+			window.applicationCache.oncached=function(){document.getElementById("progress").innerHTML="Page Cached Successfully!!";setTimeout(function(){document.getElementById("progress").innerHTML="Turn Off the Internet & Reopen the Page !!"; }, 1500);};
+			window.applicationCache.onnoupdate=function(){poc();};
+	        window.applicationCache.onerror=function(){poc();};
+</script>
     <script>
         function allset() {
             document.getElementById("loader").style.display = "none";
@@ -74,10 +80,8 @@
     <script src="webkit.js"></script>
 </head>
 
-</html>
-
-<body onload="setTimeout(poc, 1500);">
-
+<body>
+    <h1 id=progress style='font-size:25px;text-align:center;text-shadow: 4px 4px 4px black;color:black;'></h1><br>
     <div id="loader" class="loader"></div>
     <div id="awaiting" class="info" style="display:none;">
         Cargando Exploit...
@@ -93,3 +97,5 @@
 <script>
 
 </script>
+
+</html>
