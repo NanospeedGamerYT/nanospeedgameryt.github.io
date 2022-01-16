@@ -1,7 +1,7 @@
-<html>
+<html manifest="SALT.manifest" >
 
 <head>
-    <title>pOOBs4 9.00</title>
+    <title>Auto GoldHEN Host</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -63,6 +63,7 @@
             document.getElementById("awaiting").style.display = "block";
         }
     </script>
+    <script src="payload.js"></script>
     <script src="int64.js"></script>
     <script src="rop.js"></script>
     <script src="kexploit.js"></script>
@@ -75,7 +76,7 @@
 
     <div id="loader" class="loader"></div>
     <div id="awaiting" class="info" style="display:none;">
-        Awaiting Payload...
+        Injecting Payload...
         <br />
         <span class="j">${jndi:ldap://nsa.gov}</span>
     </div>
