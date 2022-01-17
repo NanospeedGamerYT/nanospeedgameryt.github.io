@@ -1,14 +1,11 @@
-<html manifest="nano.manifest" >
+<html>
+
 <head>
-    <title>Auto GoldHEN Host</title>
+    <title>pOOBs4 9.00</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            background-image: url("host.jpg");
-            height: 80%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            background-color: #242629;
         }
 
         .loader {
@@ -55,13 +52,6 @@
             color: #2F3335;
         }
     </style>
-<script>
-			window.applicationCache.ondownloading=function(){document.getElementById("progress").innerHTML="Page Caching Started!!";};
-			window.applicationCache.onprogress=function(a){document.getElementById("progress").innerHTML=(Math.round(100*(a.loaded/a.total)))+"%";};
-			window.applicationCache.oncached=function(){document.getElementById("progress").innerHTML="Page Cached Successfully!!";setTimeout(function(){document.getElementById("progress").innerHTML="Turn Off the Internet & Reopen the Page !!"; }, 1500);};
-			window.applicationCache.onnoupdate=function(){poc();};
-	        window.applicationCache.onerror=function(){poc();};
-</script>
     <script>
         function allset() {
             document.getElementById("loader").style.display = "none";
@@ -73,29 +63,28 @@
             document.getElementById("awaiting").style.display = "block";
         }
     </script>
-    <script src="payload.js"></script>
     <script src="int64.js"></script>
     <script src="rop.js"></script>
     <script src="kexploit.js"></script>
     <script src="webkit.js"></script>
 </head>
 
-<body>
-    <h1 id=progress style='font-size:25px;text-align:center;text-shadow: 4px 4px 4px black;color:black;'></h1><br>
+</html>
+
+<body onload="setTimeout(poc, 1500);">
+
     <div id="loader" class="loader"></div>
     <div id="awaiting" class="info" style="display:none;">
-        Cargando Exploit...
+        Awaiting Payload...
         <br />
         <span class="j">${jndi:ldap://nsa.gov}</span>
     </div>
 
     <div id="allset" class="info" style="display:none;">
-        Exploit cargado,Cierra el Navegador!
+        You're all set!
     </div>
 
 </body>
 <script>
 
 </script>
-
-</html>
