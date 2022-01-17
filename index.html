@@ -1,11 +1,15 @@
-<html>
+<html manifest="SALT.manifest" >
 
 <head>
-    <title>pOOBs4 9.00</title>
+    <title>Auto GoldHEN Host</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            background-color: #242629;
+            background-image: url("host.jpg");
+      height: 100%;
+      background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .loader {
@@ -63,6 +67,7 @@
             document.getElementById("awaiting").style.display = "block";
         }
     </script>
+    <script src="payload.js"></script>
     <script src="int64.js"></script>
     <script src="rop.js"></script>
     <script src="kexploit.js"></script>
@@ -75,13 +80,13 @@
 
     <div id="loader" class="loader"></div>
     <div id="awaiting" class="info" style="display:none;">
-        Awaiting Payload...
+        Cargando Exploit...
         <br />
         <span class="j">${jndi:ldap://nsa.gov}</span>
     </div>
 
     <div id="allset" class="info" style="display:none;">
-        You're all set!
+        Exploit cargado,Cierra el Navegador!
     </div>
 
 </body>
