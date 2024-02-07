@@ -1,0 +1,116 @@
+<html manifest="nano.cache">
+    
+<head>
+    <title>Auto GoldHEN Host</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body 
+        {
+            background-image: url("host.jpg");
+            height: 80%;
+            background-position: center;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .loader 
+        {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -75px 0 0 -75px;
+            border: 10px solid #1f1e1e;
+            border-radius: 50%;
+            border-top: 10px solid #d40606;
+            border-left: 10px solid #d40606;
+            width: 120px;
+            height: 120px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin 
+        {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .info 
+        {
+            overflow: hidden;
+            position: fixed;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            font-size: 45px;
+            font-family: sans-serif;
+            color: #d40606;
+
+            transform: translate(-50%, -50%);
+        }
+
+        .j {
+            font-size: 15px;
+            color: #d40606;
+        }
+    </style>
+<script>
+if (window.applicationCache.status=='0'){window.location.replace("cache.html");}
+</script>
+<script>
+ PLfile = "goldhen.bin";
+ function load_pocB(){
+ var req = new XMLHttpRequest();
+ req.responseType = "arraybuffer";
+ req.open('GET', PLfile);
+ req.send();
+ req.onreadystatechange = function () {
+  if (req.readyState == 4) {
+   PLD = req.response;
+   var payload_buffer = chain.syscall(477, 0, PLD.byteLength*4 , 7, 0x1002, -1, 0);
+   var pl = p.array_from_address(payload_buffer, PLD.byteLength*4);
+   var padding = new Uint8Array(4 - (req.response.byteLength % 4) % 4);
+   var tmp = new Uint8Array(req.response.byteLength + padding.byteLength);
+   tmp.set(new Uint8Array(req.response), 0);
+   tmp.set(padding, req.response.byteLength);
+   var shellcode = new Uint32Array(tmp.buffer);
+   pl.set(shellcode,0);
+   var pthread = p.malloc(0x10);
+   chain.call(libKernelBase.add32(OFFSET_lk_pthread_create), pthread, 0x0, payload_buffer, 0);
+   allset();
+  }
+ };
+}
+function jbdone() {
+window.progress.innerHTML="Jailbreak hecho";
+goldhen();
+}
+function goldhen(){
+    progress.innerHTML="Cargando... por favor espere";
+    load_pocB();
+}
+        function allset() 
+        {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("allset").style.display = "block";
+        }
+</script>
+<script src="./int64.js"></script>
+<script src="./rop.js"></script>
+<script src="./kexploit.js"></script>
+<script type=module src="./alert.mjs"></script>
+</head>
+
+<body>
+    <h1 id=progress style='font-size:25px;text-align:center;text-shadow: 4px 4px 4px black;color:yellow;'></h1><br>
+    <div id="loader" class="loader"></div>
+    <div id="allset" class="info" style="display:none;font-size:30px;text-align:center;text-shadow: 4px 4px 4px black;color:yellow;">Liberacion completada. Cierra el Navegador!</div>
+</body>
+
+</html>
